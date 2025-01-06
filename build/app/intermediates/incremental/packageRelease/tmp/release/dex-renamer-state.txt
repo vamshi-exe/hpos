@@ -1,0 +1,4 @@
+#Mon Jan 06 15:50:24 IST 2025
+base.0=/Users/vamshi/Desktop/flutter_projects/hpos/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
