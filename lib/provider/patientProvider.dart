@@ -16,7 +16,8 @@ class PatientProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> submitPatientDetails(BuildContext context, List diseaseList) async {
+  Future<void> submitPatientDetails(
+      BuildContext context, List diseaseList) async {
     _setLoading(true);
 
     try {
@@ -80,18 +81,20 @@ class PatientProvider with ChangeNotifier {
 
       // Commented out unused variables
       // String? familyHistoryDetails = prefs.getString('familyHistoryDetails');
-      // List<String>? symptoms;
-      // try {
-      //   symptoms = List<String>.from(jsonDecode(prefs.getString('symptoms') ?? '[]'));
-      // } catch (e) {
-      //   symptoms = [];
-      //   print('Error decoding symptoms: $e');
-      // }
+      List<String>? symptoms;
+      try {
+        symptoms =
+            List<String>.from(jsonDecode(prefs.getString('symptoms') ?? '[]'));
+      } catch (e) {
+        symptoms = [];
+        print('Error decoding symptoms: $e');
+      }
 
       String? imagePath = prefs.getString('userImagePath');
       File? userImage = imagePath != null ? File(imagePath) : null;
 
-      final url = Uri.parse('https://hpos-mobile-flutter.onrender.com/api/patient');
+      final url =
+          Uri.parse('https://hposapi.talentrisetechnokrate.com/api/patient');
       var request = http.MultipartRequest('POST', url);
 
       request.fields['personalName'] = personName ?? '';
@@ -112,26 +115,50 @@ class PatientProvider with ChangeNotifier {
       request.fields['address[district]'] = district ?? '';
       request.fields['address[city]'] = city ?? '';
       request.fields['centerName'] = centerName ?? '';
-      request.fields['isUnderMedicationForSickle'] = medication == 'No' ? 'false' : 'true';
-      request.fields['isUnderBloodTransfusionForSickle'] = bloodTransfusion == 'No' ? 'false' : 'true';
-      request.fields['familyHistoryForSickle'] = familyHistory == 'No' ? 'false' : 'true';
-      final selectedDiseaseProvider = Provider.of<SelectedDiseaseProvider>(context, listen: false);
-      String? selectedDisease = selectedDiseaseProvider.selectedDisease;
-      request.fields['disease'] = '["$selectedDisease"]';
+
+      if (diseaseList.contains("sickleCell")) {
+        request.fields['isUnderMedicationForSickle'] =
+            medication == 'No' ? 'false' : 'true';
+        request.fields['isUnderBloodTransfusionForSickle'] =
+            bloodTransfusion == 'No' ? 'false' : 'true';
+        request.fields['familyHistoryForSickle'] =
+            familyHistory == 'No' ? 'false' : 'true';
+      }
+
+      if (diseaseList.contains("breastCancer")) {
+        request.fields['isUnderMedicationForBreast'] =
+            breastCancerMedication == 'No' ? 'false' : 'true';
+        request.fields['familyHistoryForBreast'] =
+            breastFamilyHistory == 'No' ? 'false' : 'true';
+      }
+
+      // final selectedDiseaseProvider = Provider.of<SelectedDiseaseProvider>(context, listen: false);
+      // String? selectedDisease = selectedDiseaseProvider.selectedDisease;
+      request.fields['disease'] = '["${diseaseList.join('","')}"]';
 
       // Commented out unused fields
       // if (familyHistoryDetails != null) {
       //   request.fields['familyHistoryDetails'] = familyHistoryDetails;
       // }
-      // if (symptoms != null) {
-      //   request.fields['symptoms'] = jsonEncode(symptoms);
-      // }
-      // request.fields['ageAtMarriage'] = ageAtMarriage ?? '';
-      // request.fields['perCapitaIncome'] = perCapitaIncome ?? '';
-      // request.fields['literacyRate'] = literacyRate ?? '';
-      // request.fields['parity'] = parity ?? '';
-      // request.fields['ageOfFirstChild'] = ageOfFirstChild ?? '';
-      // request.fields['vaccinationStatus'] = vaccinationStatus ?? '';
+      if (symptoms != null) {
+        request.fields['symptoms'] = jsonEncode(symptoms);
+      }
+      if (diseaseList.contains("cervicalCancer")) {
+        request.fields['isUnderMedicationForCervical'] =
+            cervicalMedication == 'No' ? 'false' : 'true';
+        request.fields['familyHistoryForCervical'] =
+            cervicalFamilyHistory == 'No' ? 'false' : 'true';
+        request.fields['ageAtMarriage'] = ageAtMarriage ?? '';
+        request.fields['perCapitaIncome'] = perCapitaIncome ?? '';
+        request.fields['literacyRate'] = literacyRate ?? '';
+        request.fields['parity'] = parity ?? '';
+        request.fields['ageOfFirstChild'] = ageOfFirstChild ?? '';
+        request.fields['vaccinationStatus'] = vaccinationStatus ?? '';
+        request.fields['menoPauseStatus'] = jsonEncode({
+          "LMP": lmp ?? '',
+          "havingMenopause": menopauseYears ?? '0',
+        });
+      }
 
       if (userImage != null) {
         request.files.add(await http.MultipartFile.fromPath(
@@ -152,7 +179,8 @@ class PatientProvider with ChangeNotifier {
           SnackBar(content: Text('Form submitted successfully!')),
         );
       } else {
-        print('Failed to submit patient details: ${response.statusCode}');
+        print(
+            'Failed to submit patient details: ${response.statusCode}  ${response.body}');
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Failed to submit form.')),
         );

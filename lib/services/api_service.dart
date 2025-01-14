@@ -29,11 +29,12 @@ class ApiService extends ChangeNotifier {
   List<String> get categoryNames => _categoryNames;
 
   bool isLoading = false;
-  // final String baseUrl = 'https://hpos-mobile-flutter.onrender.com';
-  // final String baseUrl = 'https://hpos-mobile-flutter-nodejs-node.onrender.com';
-  final String baseUrl = 'https://hpos-mobile-flutter-nodejs.onrender.com';
+  // final String baseUrl = 'https://hposapi.talentrisetechnokrate.com';
+  final String baseUrl = 'https://hposapi.talentrisetechnokrate.com';
 
-  Future<Map<String, dynamic>> login(String userid, String password,
+  Future<Map<String, dynamic>> login(
+      String userid,
+      String password,
       // String disease,
       BuildContext context) async {
     final url = Uri.parse('$baseUrl/api/auth/login');
@@ -56,7 +57,8 @@ class ApiService extends ChangeNotifier {
       UserModel userModel = UserModel.fromJson(json);
       Provider.of<UserProvider>(context, listen: false).setUser(userModel);
 
-      print('User token: ${Provider.of<UserProvider>(context, listen: false).token}');
+      print(
+          'User token: ${Provider.of<UserProvider>(context, listen: false).token}');
       print(response.body);
       return jsonDecode(response.body);
     } else if (response.statusCode == 400) {
@@ -207,9 +209,7 @@ class ApiService extends ChangeNotifier {
     }
   }
 
-
-  Future<http.StreamedResponse> submitPatientDataForCervicalCancer()async {
-
+  Future<http.StreamedResponse> submitPatientDataForCervicalCancer() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     // Retrieve saved form data from SharedPreferences
     String? personName = prefs.getString('personName');
@@ -245,7 +245,10 @@ class ApiService extends ChangeNotifier {
     String? vaccinationStatus = prefs.getString('vaccinationStatus');
     String? lmp = prefs.getString('lmp');
 
-    var request = http.MultipartRequest('POST', Uri.parse('https://hpos-mobile-flutter-nodejs-node.onrender.com/api/patient'));
+    var request = http.MultipartRequest(
+        'POST',
+        Uri.parse(
+            'https://hpos-mobile-flutter-nodejs-node.onrender.com/api/patient'));
     request.fields.addAll({
       'personalName': personName ?? '',
       'aadhaarNumber': aadharNumber ?? '',
@@ -266,7 +269,8 @@ class ApiService extends ChangeNotifier {
       'address[city]': district ?? '',
       'centerName': centerName ?? '',
       'isUnderMedicationForCervical': medication == "Yes" ? 'true' : 'false',
-      'isUnderBloodTransfusionForCervical': bloodTransfusion == "Yes" ? 'true' : 'false',
+      'isUnderBloodTransfusionForCervical':
+          bloodTransfusion == "Yes" ? 'true' : 'false',
       'familyHistoryForCervical': familyHistory == "Yes" ? 'true' : 'false',
       'disease': jsonEncode(diseaseList),
       'ageAtMarried': ageAtMarriage ?? '',
@@ -281,19 +285,17 @@ class ApiService extends ChangeNotifier {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 201) {
-      print("response===============> ${await response.stream.bytesToString()}");
+      print(
+          "response===============> ${await response.stream.bytesToString()}");
       print("success");
       return response;
-    }
-    else {
+    } else {
       print("errorrrrrrrrrr ${await response.stream.bytesToString()}");
       return response;
     }
-
   }
 
-  Future<http.StreamedResponse> submitPatientDataForSickleCell()async {
-
+  Future<http.StreamedResponse> submitPatientDataForSickleCell() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     // Retrieve saved form data from SharedPreferences
     String? personName = prefs.getString('personName');
@@ -329,7 +331,10 @@ class ApiService extends ChangeNotifier {
     // String? vaccinationStatus = prefs.getString('vaccinationStatus');
     // String? lmp = prefs.getString('lmp');
 
-    var request = http.MultipartRequest('POST', Uri.parse('https://hpos-mobile-flutter-nodejs-node.onrender.com/api/patient'));
+    var request = http.MultipartRequest(
+        'POST',
+        Uri.parse(
+            'https://hpos-mobile-flutter-nodejs-node.onrender.com/api/patient'));
     request.fields.addAll({
       'personalName': personName ?? '',
       'aadhaarNumber': aadharNumber ?? '',
@@ -350,7 +355,8 @@ class ApiService extends ChangeNotifier {
       'address[city]': district ?? '',
       'centerName': centerName ?? '',
       'isUnderMedicationForSickle': medication == "Yes" ? 'true' : 'false',
-      'isUnderBloodTransfusionForSickle': bloodTransfusion == "Yes" ? 'true' : 'false',
+      'isUnderBloodTransfusionForSickle':
+          bloodTransfusion == "Yes" ? 'true' : 'false',
       'familyHistoryForSickle': familyHistory == "Yes" ? 'true' : 'false',
       'disease': jsonEncode(diseaseList),
     });
@@ -358,18 +364,18 @@ class ApiService extends ChangeNotifier {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 201) {
-      print("sickle cell response===============> ${await response.stream.bytesToString()}");
+      print(
+          "sickle cell response===============> ${await response.stream.bytesToString()}");
       print("success");
       return response;
-    }
-    else {
-      print("sickle cell errorrrrrrrrrr ${await response.stream.bytesToString()}");
+    } else {
+      print(
+          "sickle cell errorrrrrrrrrr ${await response.stream.bytesToString()}");
       return response;
     }
-
   }
-  Future<http.StreamedResponse> submitPatientDataNew()async {
 
+  Future<http.StreamedResponse> submitPatientDataNew() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     // Retrieve saved form data from SharedPreferences
     String? personName = prefs.getString('personName');
@@ -400,9 +406,12 @@ class ApiService extends ChangeNotifier {
     String? sickleFamilyHistory = prefs.getString('sickleFamilyHistory');
     String? cervicalFamilyHistory = prefs.getString('cervicalFamilyHistory');
     String? breastFamilyHistory = prefs.getString('breastFamilyHistory');
-    String? bloodTransfusionForCervical = prefs.getString('bloodTransfusionForCervical');
-    String? bloodTransfusionForSickle = prefs.getString('bloodTransfusionForSickle');
-    String? bloodTransfusionForBreast = prefs.getString('bloodTransfusionForBreast');
+    String? bloodTransfusionForCervical =
+        prefs.getString('bloodTransfusionForCervical');
+    String? bloodTransfusionForSickle =
+        prefs.getString('bloodTransfusionForSickle');
+    String? bloodTransfusionForBreast =
+        prefs.getString('bloodTransfusionForBreast');
     List<String>? diseaseList = prefs.getStringList('diseaseList');
     // String? familyHistoryDetails = prefs.getString('familyHistoryDetails');
     String? ageAtMarriage = prefs.getString('ageAtMarriage');
@@ -414,8 +423,8 @@ class ApiService extends ChangeNotifier {
     String? vaccinationStatus = prefs.getString('vaccinationStatus');
     String? lmp = prefs.getString('lmp');
 
-
-    var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/api/patient'));
+    var request =
+        http.MultipartRequest('POST', Uri.parse('$baseUrl/api/patient'));
     request.fields.addAll({
       'personalName': personName ?? '',
       'aadhaarNumber': aadharNumber ?? '',
@@ -435,15 +444,20 @@ class ApiService extends ChangeNotifier {
       'address[district]': city ?? '',
       'address[city]': district ?? '',
       'centerName': centerName ?? '',
-      'isUnderMedicationForSickle': sickleMedication == "Yes" ? 'true' : 'false',
-      'isUnderMedicationForBreast': breastMedication== "Yes" ? 'true' : 'false',
-      'isUnderMedicationForCervical': cervicalMedication == "Yes" ? 'true' : 'false',
+      'isUnderMedicationForSickle':
+          sickleMedication == "Yes" ? 'true' : 'false',
+      'isUnderMedicationForBreast':
+          breastMedication == "Yes" ? 'true' : 'false',
+      'isUnderMedicationForCervical':
+          cervicalMedication == "Yes" ? 'true' : 'false',
       'familyHistoryForSickle': sickleFamilyHistory == "Yes" ? 'true' : 'false',
-      'familyHistoryForCervical': cervicalFamilyHistory == "Yes" ? 'true' : 'false',
+      'familyHistoryForCervical':
+          cervicalFamilyHistory == "Yes" ? 'true' : 'false',
       'familyHistoryForBreast': breastFamilyHistory == "Yes" ? 'true' : 'false',
       // 'isUnderBloodTransfusionForBreast': bloodTransfusionForBreast == "Yes" ? 'true' : 'false',
       // 'isUnderBloodTransfusionForCervical': bloodTransfusionForCervical == "Yes" ? 'true' : 'false',
-      'isUnderBloodTransfusionForSickle': bloodTransfusionForSickle == "Yes" ? 'true' : 'false',
+      'isUnderBloodTransfusionForSickle':
+          bloodTransfusionForSickle == "Yes" ? 'true' : 'false',
       'disease': jsonEncode(diseaseList),
       'ageAtMarried': ageAtMarriage ?? '',
       'perCapitaIncome': perCapitaIncome ?? '',
@@ -452,7 +466,6 @@ class ApiService extends ChangeNotifier {
       'menoPauseStatus': '{"LMP":"$lmp", "havingMenopause":"$menopauseYears"}',
       'ageOfFirstChild': ageFirstChild ?? '',
       'vaccinationStatus': vaccinationStatus ?? ''
-
     });
 
     http.StreamedResponse response = await request.send();
@@ -463,26 +476,25 @@ class ApiService extends ChangeNotifier {
     // print("Full response object: =====>>>>> $responseBody");
 
     if (response.statusCode == 201) {
-      print("response===============> ${await response.stream.bytesToString()}");
+      print(
+          "response===============> ${await response.stream.bytesToString()}");
       print("success");
       return response;
-    }
-    else {
+    } else {
       print("errorrrrrrrrrr ${await response.stream.bytesToString()}");
       return response;
     }
-
   }
 
   Future<void> fetchCenterNames() async {
     final response =
-    await http.get(Uri.parse('$baseUrl/api/centerCode/getCenterName'));
+        await http.get(Uri.parse('$baseUrl/api/centerCode/getCenterName'));
 
     if (response.statusCode == 200) {
       var jsonResponse = json.decode(response.body);
       log(response.body);
       CenterNameListResponse centerListResponse =
-      CenterNameListResponse.fromJson(jsonResponse);
+          CenterNameListResponse.fromJson(jsonResponse);
       _centerNames = centerListResponse.centerNameList;
 
       notifyListeners();
@@ -493,13 +505,13 @@ class ApiService extends ChangeNotifier {
 
   Future<void> fetchCasteNames() async {
     final response =
-    await http.get(Uri.parse('$baseUrl/api/casteAndCategory/getCaste'));
+        await http.get(Uri.parse('$baseUrl/api/casteAndCategory/getCaste'));
 
     if (response.statusCode == 200) {
       log(response.body);
       var jsonResponse = json.decode(response.body);
       CasteListResponse casteListResponse =
-      CasteListResponse.fromJson(jsonResponse);
+          CasteListResponse.fromJson(jsonResponse);
       _casteNames = casteListResponse.casteList.first.names;
       notifyListeners();
     } else {
@@ -509,13 +521,13 @@ class ApiService extends ChangeNotifier {
 
   Future<void> fetchCategory() async {
     final response =
-    await http.get(Uri.parse('$baseUrl/api/casteAndCategory/getCategory'));
+        await http.get(Uri.parse('$baseUrl/api/casteAndCategory/getCategory'));
 
     if (response.statusCode == 200) {
       log(response.body);
       var jsonResponse = json.decode(response.body);
       CategoryListResponse categoryListResponse =
-      CategoryListResponse.fromJson(jsonResponse);
+          CategoryListResponse.fromJson(jsonResponse);
       _categoryNames = categoryListResponse.categoryList.first.names;
       notifyListeners();
     } else {
@@ -525,7 +537,7 @@ class ApiService extends ChangeNotifier {
 
   Future<void> addCaste(String caste) async {
     final url = Uri.parse(
-        'https://hpos-mobile-flutter.onrender.com/api/casteAndCategory/addCaste');
+        'https://hposapi.talentrisetechnokrate.com/api/casteAndCategory/addCaste');
 
     try {
       final response = await http.post(
@@ -551,7 +563,7 @@ class ApiService extends ChangeNotifier {
   // Method to add a new category
   Future<void> addCategory(String category) async {
     final url = Uri.parse(
-        'https://hpos-mobile-flutter.onrender.com/api/casteAndCategory/addCategory');
+        'https://hposapi.talentrisetechnokrate.com/api/casteAndCategory/addCategory');
 
     try {
       final response = await http.post(

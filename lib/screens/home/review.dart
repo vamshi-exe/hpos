@@ -103,6 +103,8 @@ class _FinalReviewScreenState extends State<FinalReviewScreen> {
       vaccinationStatus = prefs.getString('vaccinationStatus');
       lmp = prefs.getString('lmp');
       diseaseList = prefs.getStringList('diseaseList');
+      symptoms =
+          List<String>.from(jsonDecode(prefs.getString('symptoms') ?? '[]'));
       log(lmp.toString());
 
       String? imagePath = prefs.getString('userImagePath');
@@ -115,7 +117,8 @@ class _FinalReviewScreenState extends State<FinalReviewScreen> {
   @override
   Widget build(BuildContext context) {
     final patientProvider = Provider.of<PatientProvider>(context);
-    final selectedDiseaseProvider = Provider.of<SelectedDiseaseProvider>(context);
+    final selectedDiseaseProvider =
+        Provider.of<SelectedDiseaseProvider>(context);
     String? selectedDisease = selectedDiseaseProvider.selectedDisease;
 
     return Scaffold(
@@ -160,7 +163,8 @@ class _FinalReviewScreenState extends State<FinalReviewScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              if (selectedDisease != null) _buildDataRow('Selected Disease:', selectedDisease),
+              if (selectedDisease != null)
+                _buildDataRow('Selected Disease:', diseaseList?.join(', ')),
               _buildDataRow('Person Name:', personName),
               _buildDataRow('Aadhar Number:', aadharNumber),
               _buildDataRow('Abha Number:', abhaNumber),
@@ -185,8 +189,10 @@ class _FinalReviewScreenState extends State<FinalReviewScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    _buildDataRow('Is Under Medication for Sickle Cell:', medication),
-                    _buildDataRow('Is Under Blood Transfusion for Sickel Cell:', bloodTransfusion),
+                    _buildDataRow(
+                        'Is Under Medication for Sickle Cell:', medication),
+                    _buildDataRow('Is Under Blood Transfusion for Sickel Cell:',
+                        bloodTransfusion),
                     _buildDataRow('Sickle Cell Family History:', familyHistory),
                   ],
                 ),
@@ -197,8 +203,10 @@ class _FinalReviewScreenState extends State<FinalReviewScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    _buildDataRow('Is Under Medication for Breast Cancer:', breastCancerMedication),
-                    _buildDataRow('Breast Cancer Family History:', breastFamilyHistory),
+                    _buildDataRow('Is Under Medication for Breast Cancer:',
+                        breastCancerMedication),
+                    _buildDataRow(
+                        'Breast Cancer Family History:', breastFamilyHistory),
                   ],
                 ),
               ),
@@ -209,15 +217,18 @@ class _FinalReviewScreenState extends State<FinalReviewScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    _buildDataRow('Is Under Medication for Cervical Cancer:', cervicalMedication),
-                    _buildDataRow('Cervical Cancer Family History:', cervicalFamilyHistory),
+                    _buildDataRow('Is Under Medication for Cervical Cancer:',
+                        cervicalMedication),
+                    _buildDataRow('Cervical Cancer Family History:',
+                        cervicalFamilyHistory),
                     _buildDataRow('Last Menstrual Period (LMP):', lmp),
                     _buildDataRow('Age at Marriage:', ageAtMarriage),
                     _buildDataRow('Per Capita Income:', perCapitaIncome),
                     _buildDataRow('Literacy Rate:', literacyRate),
                     _buildDataRow('Parity:', parity),
                     if (menopauseYears != null && menopauseYears!.isNotEmpty)
-                      _buildDataRow('Menopause Status:', 'Yes, $menopauseYears years'),
+                      _buildDataRow(
+                          'Menopause Status:', 'Yes, $menopauseYears years'),
                     _buildDataRow('Age of First Child:', ageOfFirstChild),
                     _buildDataRow('Vaccination Status:', vaccinationStatus),
                     _buildDataRow('Symptoms:', symptoms?.join(', ')),
@@ -253,10 +264,12 @@ class _FinalReviewScreenState extends State<FinalReviewScreen> {
                     onPressed: patientProvider.isLoading
                         ? null
                         : () {
-                            patientProvider.submitPatientDetails(context, diseaseList!);
+                            patientProvider.submitPatientDetails(
+                                context, diseaseList!);
                           },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: patientProvider.isLoading ? Colors.grey : Colors.blue,
+                      backgroundColor:
+                          patientProvider.isLoading ? Colors.grey : Colors.blue,
                       minimumSize: const Size(120, 40),
                     ),
                     child: Text(

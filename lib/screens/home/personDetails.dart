@@ -49,7 +49,8 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
   final TextEditingController incomeControlller = TextEditingController();
   final TextEditingController familyHistoryController = TextEditingController();
   final TextEditingController lmpController = TextEditingController();
-  final TextEditingController menopauseYearsController = TextEditingController();
+  final TextEditingController menopauseYearsController =
+      TextEditingController();
   final TextEditingController ageFirstChildController = TextEditingController();
   final TextEditingController othersforSymptoms = TextEditingController();
 
@@ -96,7 +97,8 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
     await prefs.setString('breastMedication', _breastMedication!);
     await prefs.setString('bloodTransfusion', _bloodTransfusion!);
     // await prefs.setString('bloodTransfusionForCervical', _bloodTransfusionForCervical!);
-    await prefs.setString('bloodTransfusionForSickle', _bloodTransfusionForSickle!);
+    await prefs.setString(
+        'bloodTransfusionForSickle', _bloodTransfusionForSickle!);
     // await prefs.setString('bloodTransfusionForBreast', _bloodTransfusionForBreast!);
     // await prefs.setString('familyHistory', _familyHistory!);
     await prefs.setString('cervicalFamilyHistory', _cervicalFamilyHistory!);
@@ -122,7 +124,8 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
     }
 
     if (showFamilyHistoryField) {
-      await prefs.setString('familyHistoryDetails', familyHistoryController.text);
+      await prefs.setString(
+          'familyHistoryDetails', familyHistoryController.text);
     }
   }
 
@@ -130,7 +133,8 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
     if (birthYearController.text.isEmpty) {
       _showAlertDialog(context, "Please enter Birth Date.");
       return false;
-    } else if (mobileNumberController.text.isEmpty || mobileNumberController.text.length != 10) {
+    } else if (mobileNumberController.text.isEmpty ||
+        mobileNumberController.text.length != 10) {
       _showAlertDialog(context, "Please enter a valid 10-digit Mobile Number.");
       return false;
     } else if (maritalStatus == null) {
@@ -154,11 +158,13 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
     } else if (stateController.text.isEmpty) {
       _showAlertDialog(context, "Please enter State.");
       return false;
-    } else if (pincodeController.text.isEmpty || pincodeController.text.length != 6) {
+    } else if (pincodeController.text.isEmpty ||
+        pincodeController.text.length != 6) {
       _showAlertDialog(context, "Please enter a valid 6-digit Pincode.");
       return false;
     } else if (showFamilyHistoryField && familyHistoryController.text.isEmpty) {
-      _showAlertDialog(context, "Please provide details for Family History of Breast Cancer.");
+      _showAlertDialog(context,
+          "Please provide details for Family History of Breast Cancer.");
       return false;
     } else if (lmpController.text.isEmpty) {
       _showAlertDialog(context, "Please enter Last Menstrual Period (LMP).");
@@ -166,8 +172,10 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
     } else if (_menopauseStatus == null) {
       _showAlertDialog(context, "Please select Menopausal Status.");
       return false;
-    } else if (_menopauseStatus == 'Yes' && menopauseYearsController.text.isEmpty) {
-      _showAlertDialog(context, "Please enter the number of years since menopause.");
+    } else if (_menopauseStatus == 'Yes' &&
+        menopauseYearsController.text.isEmpty) {
+      _showAlertDialog(
+          context, "Please enter the number of years since menopause.");
       return false;
     } else if (ageFirstChildController.text.isEmpty) {
       _showAlertDialog(context, "Please enter Age of First Child.");
@@ -183,7 +191,8 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
     if (birthYearController.text.isEmpty) {
       _showAlertDialog(context, "Please enter Birth Date.");
       return false;
-    } else if (mobileNumberController.text.isEmpty || mobileNumberController.text.length != 10) {
+    } else if (mobileNumberController.text.isEmpty ||
+        mobileNumberController.text.length != 10) {
       _showAlertDialog(context, "Please enter a valid 10-digit Mobile Number.");
       return false;
     } else if (maritalStatus == null) {
@@ -207,11 +216,13 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
     } else if (stateController.text.isEmpty) {
       _showAlertDialog(context, "Please enter State.");
       return false;
-    } else if (pincodeController.text.isEmpty || pincodeController.text.length != 6) {
+    } else if (pincodeController.text.isEmpty ||
+        pincodeController.text.length != 6) {
       _showAlertDialog(context, "Please enter a valid 6-digit Pincode.");
       return false;
     } else if (showFamilyHistoryField && familyHistoryController.text.isEmpty) {
-      _showAlertDialog(context, "Please provide details for Family History of Breast Cancer.");
+      _showAlertDialog(context,
+          "Please provide details for Family History of Breast Cancer.");
       return false;
     }
     return true;
@@ -221,7 +232,8 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
     if (birthYearController.text.isEmpty) {
       _showAlertDialog(context, "Please enter Birth Date.");
       return false;
-    } else if (mobileNumberController.text.isEmpty || mobileNumberController.text.length != 10) {
+    } else if (mobileNumberController.text.isEmpty ||
+        mobileNumberController.text.length != 10) {
       _showAlertDialog(context, "Please enter a valid 10-digit Mobile Number.");
       return false;
     } else if (maritalStatus == null) {
@@ -245,7 +257,8 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
     } else if (stateController.text.isEmpty) {
       _showAlertDialog(context, "Please enter State.");
       return false;
-    } else if (pincodeController.text.isEmpty || pincodeController.text.length != 6) {
+    } else if (pincodeController.text.isEmpty ||
+        pincodeController.text.length != 6) {
       _showAlertDialog(context, "Please enter a valid 6-digit Pincode.");
       return false;
     }
@@ -312,7 +325,8 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
     }
   }
 
-  Future<void> _addNewItem(BuildContext context, String itemType, ApiService apiService) async {
+  Future<void> _addNewItem(
+      BuildContext context, String itemType, ApiService apiService) async {
     TextEditingController itemController = TextEditingController();
 
     await showDialog(
@@ -643,7 +657,10 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
               TextField(
                 controller: pincodeController,
                 keyboardType: TextInputType.number,
-                inputFormatters: [FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(6)],
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(6)
+                ],
                 decoration: const InputDecoration(
                   labelText: 'Pincode *',
                   border: OutlineInputBorder(),
@@ -698,7 +715,9 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
               ),
-              Visibility(visible: diseaseListArray?.contains('sickleCell') ?? false, child: const SizedBox(height: 10)),
+              Visibility(
+                  visible: diseaseListArray?.contains('sickleCell') ?? false,
+                  child: const SizedBox(height: 10)),
               Visibility(
                   visible: diseaseListArray?.contains('sickleCell') ?? false,
                   child: Text('Have you been under medication ?')),
@@ -729,9 +748,12 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                   ],
                 ),
               ),
-              Visibility(visible: diseaseListArray?.contains('sickleCell') ?? false, child: const SizedBox(height: 10)),
+              Visibility(
+                  visible: diseaseListArray?.contains('sickleCell') ?? false,
+                  child: const SizedBox(height: 10)),
               if (diseaseListArray?.contains('sickleCell') ?? false) ...[
-                const Text('Have you undergone any blood transfusions recently?'),
+                const Text(
+                    'Have you undergone any blood transfusions recently?'),
                 Row(
                   children: [
                     Radio<String>(
@@ -757,7 +779,9 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                   ],
                 ),
               ],
-              Visibility(visible: diseaseListArray?.contains('sickleCell') ?? false, child: const SizedBox(height: 10)),
+              Visibility(
+                  visible: diseaseListArray?.contains('sickleCell') ?? false,
+                  child: const SizedBox(height: 10)),
               Visibility(
                   visible: diseaseListArray?.contains('sickleCell') ?? false,
                   child: Text('Is there a family history ?')),
@@ -798,7 +822,9 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                     border: OutlineInputBorder(),
                   ),
                 ),
-              Visibility(visible: diseaseListArray?.contains('sickleCell') ?? false, child: const SizedBox(height: 10)),
+              Visibility(
+                  visible: diseaseListArray?.contains('sickleCell') ?? false,
+                  child: const SizedBox(height: 10)),
 
               // breast cancer fields============================================================
 
@@ -810,7 +836,8 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                 ),
               ),
               Visibility(
-                  visible: diseaseListArray?.contains('breastCancer') ?? false, child: const SizedBox(height: 10)),
+                  visible: diseaseListArray?.contains('breastCancer') ?? false,
+                  child: const SizedBox(height: 10)),
               Visibility(
                   visible: diseaseListArray?.contains('breastCancer') ?? false,
                   child: Text('Have you been under medication ?')),
@@ -842,7 +869,8 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                 ),
               ),
               Visibility(
-                  visible: diseaseListArray?.contains('breastCancer') ?? false, child: const SizedBox(height: 10)),
+                  visible: diseaseListArray?.contains('breastCancer') ?? false,
+                  child: const SizedBox(height: 10)),
               // Visibility(visible: diseaseListArray?.contains('breastCancer') ?? false,child: const SizedBox(height: 10)),
               // if (diseaseListArray?.contains('breastCancer') ?? false) ...[
               //   const Text(
@@ -873,7 +901,8 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
               //   ),
               // ],
               Visibility(
-                  visible: diseaseListArray?.contains('breastCancer') ?? false, child: const SizedBox(height: 10)),
+                  visible: diseaseListArray?.contains('breastCancer') ?? false,
+                  child: const SizedBox(height: 10)),
               Visibility(
                   visible: diseaseListArray?.contains('breastCancer') ?? false,
                   child: Text('Is there a family history ?')),
@@ -915,7 +944,8 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                   ),
                 ),
               Visibility(
-                  visible: diseaseListArray?.contains('breastCancer') ?? false, child: const SizedBox(height: 10)),
+                  visible: diseaseListArray?.contains('breastCancer') ?? false,
+                  child: const SizedBox(height: 10)),
 
               // cervical cancer fields============================================================
               Visibility(
@@ -926,9 +956,12 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                 ),
               ),
               Visibility(
-                  visible: diseaseListArray?.contains('cervicalCancer') ?? false, child: const SizedBox(height: 10)),
+                  visible:
+                      diseaseListArray?.contains('cervicalCancer') ?? false,
+                  child: const SizedBox(height: 10)),
               Visibility(
-                  visible: diseaseListArray?.contains('cervicalCancer') ?? false,
+                  visible:
+                      diseaseListArray?.contains('cervicalCancer') ?? false,
                   child: Text('Have you been under medication ?')),
               Visibility(
                 visible: diseaseListArray?.contains('cervicalCancer') ?? false,
@@ -958,7 +991,9 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                 ),
               ),
               Visibility(
-                  visible: diseaseListArray?.contains('cervicalCancer') ?? false, child: const SizedBox(height: 10)),
+                  visible:
+                      diseaseListArray?.contains('cervicalCancer') ?? false,
+                  child: const SizedBox(height: 10)),
               // Visibility(visible: diseaseListArray?.contains('cervicalCancer') ?? false,child: const SizedBox(height: 10)),
               // if (diseaseListArray?.contains('cervicalCancer') ?? false) ...[
               //   const Text(
@@ -990,9 +1025,12 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
               //   ),
               // ],
               Visibility(
-                  visible: diseaseListArray?.contains('cervicalCancer') ?? false, child: const SizedBox(height: 10)),
+                  visible:
+                      diseaseListArray?.contains('cervicalCancer') ?? false,
+                  child: const SizedBox(height: 10)),
               Visibility(
-                  visible: diseaseListArray?.contains('cervicalCancer') ?? false,
+                  visible:
+                      diseaseListArray?.contains('cervicalCancer') ?? false,
                   child: Text('Is there a family history ?')),
               Visibility(
                 visible: diseaseListArray?.contains('cervicalCancer') ?? false,
@@ -1032,7 +1070,9 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                   ),
                 ),
               Visibility(
-                  visible: diseaseListArray?.contains('cervicalCancer') ?? false, child: const SizedBox(height: 10)),
+                  visible:
+                      diseaseListArray?.contains('cervicalCancer') ?? false,
+                  child: const SizedBox(height: 10)),
 
               Visibility(
                 // visible: selectedDisease == 'Cervical Cancer',
@@ -1075,7 +1115,8 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                       title: const Text('Post Coital Bleeding'),
                       value: _symptoms.contains('Post Coital Bleeding'),
                       onChanged: (bool? selected) {
-                        toggleSymptom('Post Coital Bleeding', selected ?? false);
+                        toggleSymptom(
+                            'Post Coital Bleeding', selected ?? false);
                       },
                     ),
                     CheckboxListTile(
@@ -1100,7 +1141,8 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text('Age at Marriage:'),
-                        ...['<20', '21-25', '26-30', '31-35', '36-40', '>40'].map((age) {
+                        ...['<20', '21-25', '26-30', '31-35', '36-40', '>40']
+                            .map((age) {
                           return RadioListTile<String>(
                             contentPadding: EdgeInsets.zero,
                             title: Text(age),
@@ -1135,7 +1177,14 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text('Literacy Rate:'),
-                        ...['Illiterate', 'SSC', 'HSC', 'Graduate', 'Post Graduate', 'Professional'].map((level) {
+                        ...[
+                          'Illiterate',
+                          'SSC',
+                          'HSC',
+                          'Graduate',
+                          'Post Graduate',
+                          'Professional'
+                        ].map((level) {
                           return RadioListTile<String>(
                             contentPadding: EdgeInsets.zero,
                             title: Text(level),
@@ -1257,16 +1306,17 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                   onPressed: () async {
                     if (validateForm()) {
                       await saveFormData().then((val) {
-                        apiService.submitPatientDataNew().then((value) {
-                          value.statusCode == 201
-                              ? Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const CaptureImageScreen(),
-                                  ),
-                                )
-                              : Container();
-                        });
+                        // apiService.submitPatientDataNew().then((value) {
+                        //   value.statusCode == 201
+                        //       ?
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CaptureImageScreen(),
+                          ),
+                        );
+                        //       : Container();
+                        // });
                       });
                     }
                   },

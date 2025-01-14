@@ -13,9 +13,9 @@
       name=":@@:shared_preferences_android::release"
       project=":shared_preferences_android"/>
   <library
-      name="io.flutter:flutter_embedding_release:1.0.0-db49896cf25ceabc44096d5f088d86414e05a7aa@jar"
-      jars="/Users/vamshi/.gradle/caches/modules-2/files-2.1/io.flutter/flutter_embedding_release/1.0.0-db49896cf25ceabc44096d5f088d86414e05a7aa/9ff06a3e2b6d378066ecec963d00d5d3b288f37/flutter_embedding_release-1.0.0-db49896cf25ceabc44096d5f088d86414e05a7aa.jar"
-      resolved="io.flutter:flutter_embedding_release:1.0.0-db49896cf25ceabc44096d5f088d86414e05a7aa"/>
+      name="io.flutter:flutter_embedding_release:1.0.0-36335019a8eab588c3c2ea783c618d90505be233@jar"
+      jars="/Users/vamshi/.gradle/caches/modules-2/files-2.1/io.flutter/flutter_embedding_release/1.0.0-36335019a8eab588c3c2ea783c618d90505be233/28bfbfaa463acde1b8146ab5ad96c7eff77ebd97/flutter_embedding_release-1.0.0-36335019a8eab588c3c2ea783c618d90505be233.jar"
+      resolved="io.flutter:flutter_embedding_release:1.0.0-36335019a8eab588c3c2ea783c618d90505be233"/>
   <library
       name="androidx.fragment:fragment:1.7.1@aar"
       jars="/Users/vamshi/.gradle/caches/transforms-3/3872fdd236f52ed83cd4798be7d45986/transformed/fragment-1.7.1/jars/classes.jar"
@@ -245,9 +245,9 @@
       jars="/Users/vamshi/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.8.22/b25c86d47d6b962b9cf0f8c3f320c8a10eea3dd1/kotlin-stdlib-jdk8-1.8.22.jar"
       resolved="org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22"/>
   <library
-      name="io.flutter:arm64_v8a_release:1.0.0-db49896cf25ceabc44096d5f088d86414e05a7aa@jar"
-      jars="/Users/vamshi/.gradle/caches/modules-2/files-2.1/io.flutter/arm64_v8a_release/1.0.0-db49896cf25ceabc44096d5f088d86414e05a7aa/8348ee2deac1be3f2e1aedeae384f576b989eb2/arm64_v8a_release-1.0.0-db49896cf25ceabc44096d5f088d86414e05a7aa.jar"
-      resolved="io.flutter:arm64_v8a_release:1.0.0-db49896cf25ceabc44096d5f088d86414e05a7aa"/>
+      name="io.flutter:arm64_v8a_release:1.0.0-36335019a8eab588c3c2ea783c618d90505be233@jar"
+      jars="/Users/vamshi/.gradle/caches/modules-2/files-2.1/io.flutter/arm64_v8a_release/1.0.0-36335019a8eab588c3c2ea783c618d90505be233/4971457fbc45f8a135446348eca1b24599a0141b/arm64_v8a_release-1.0.0-36335019a8eab588c3c2ea783c618d90505be233.jar"
+      resolved="io.flutter:arm64_v8a_release:1.0.0-36335019a8eab588c3c2ea783c618d90505be233"/>
   <library
       name="androidx.arch.core:core-runtime:2.2.0@aar"
       jars="/Users/vamshi/.gradle/caches/transforms-3/97e5d49db93deb5fad608bb0987a689f/transformed/core-runtime-2.2.0/jars/classes.jar"

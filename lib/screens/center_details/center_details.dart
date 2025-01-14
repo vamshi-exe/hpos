@@ -71,7 +71,7 @@ class _CenterDetailsScreenState extends State<CenterDetailsScreen> {
 
     try {
       final url = Uri.parse(
-          'https://hpos-mobile-flutter.onrender.com/api/centerCode/getCenterCode');
+          'https://hposapi.talentrisetechnokrate.com/api/centerCode/getCenterCode');
       final response = await http.post(
         url,
         headers: {
